@@ -22,24 +22,37 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class UnionFindTest {
-    public static final Logger log = LoggerFactory.getLogger(UnionFindTest.class);
+public class WeightedQuickUnionUF extends QuickUnionUF {
+    public static final Logger log =
+            LoggerFactory.getLogger(WeightedQuickUnionUF.class);
 
-    public static final int MAX_NUM_OF_ELEMENTS = 10;
+    // represents size of each tree
+    private final int[] sz;
 
-    public static void main(String[] args) {
-        final UF uf = new QuickUnionPathCompressionUF(MAX_NUM_OF_ELEMENTS);
+    protected WeightedQuickUnionUF(final int n) {
+        super(n);
 
-        uf.union(1, 2);
-        uf.union(3, 4);
-        uf.union(3, 4);
-        uf.union(5, 6);
-        uf.union(7, 8);
-        uf.union(7, 9);
-        uf.union(2, 8);
-        uf.union(0, 5);
-        uf.union(1, 9);
+        sz = new int[n];
+        for (int i = 0; i < n; ++i) {
+            sz[i] = 1;
+        }
+    }
 
-        System.out.println(uf.count());
+    @Override
+    public void union(final int p, final int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+
+        if (rootP != rootQ) {
+            if (sz[rootP] < sz[rootQ]) {
+                id[rootP] = rootQ;
+                sz[rootQ] += sz[rootP];
+            } else {
+                id[rootQ] = rootP;
+                sz[rootP] += sz[rootQ];
+            }
+
+            --count;
+        }
     }
 }
