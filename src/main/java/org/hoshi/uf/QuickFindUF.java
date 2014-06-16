@@ -20,8 +20,56 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ *  The <tt>QuickFindUF</tt> class represents a union-find data structure.
+ *  It supports the <em>union</em> and <em>find</em> operations, along with
+ *  methods for determining whether two objects are in the same component
+ *  and the total number of components.
+ *  <p>
+ *  This implementation uses quick find.
+ *  Initializing a data structure with <em>N</em> objects takes linear time.
+ *  Afterwards, <em>find</em>, <em>connected</em>, and <em>count</em>
+ *  takes constant time but <em>union</em> takes linear time.
+ *  <p>
+ *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/15uf">Section 1.5</a> of
+ *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class QuickFindUF {
+public class QuickFindUF extends AbstractUF {
     public static final Logger log = LoggerFactory.getLogger(QuickFindUF.class);
+
+    public QuickFindUF(final int n) {
+        super(n);
+    }
+
+    @Override
+    public void union(final int p, final int q) {
+        if (connected(p, q)) {
+            return;
+        }
+
+        int idp = id[p];
+        for (int i = 0; i < id.length; ++i) {
+            if (id[i] == idp) {
+                id[i] = id[q];
+            }
+        }
+
+        --count;
+    }
+
+    @Override
+    public boolean connected(final int p, final int q) {
+        return id[p] == id[q];
+    }
+
+    @Override
+    public int find(final int p) {
+        return id[p];
+    }
+
+    @Override
+    public int count() {
+        return count;
+    }
 }

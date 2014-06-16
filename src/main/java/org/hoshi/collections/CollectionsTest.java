@@ -24,4 +24,8 @@ import org.slf4j.LoggerFactory;
  */
 public class CollectionsTest {
     public static final Logger log = LoggerFactory.getLogger(CollectionsTest.class);
+
+    public static void main(String[] args) {
+
+    }
 }

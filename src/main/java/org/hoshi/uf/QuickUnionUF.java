@@ -22,6 +22,40 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class QuickUnionUF {
+public class QuickUnionUF extends AbstractUF {
     public static final Logger log = LoggerFactory.getLogger(QuickUnionUF.class);
+
+    public QuickUnionUF(final int n) {
+        super(n);
+    }
+
+    @Override
+    public void union(final int p, final int q) {
+        int rootP = find(p);
+        int rootQ = find(q);
+
+        if (rootP != rootQ) {
+            id[rootP] = rootQ;
+            --count;
+        }
+    }
+
+    @Override
+    public boolean connected(final int p, final int q) {
+        return find(p) == find(q);
+    }
+
+    @Override
+    public int find(int i) {
+        while (i != id[i]) {
+            i = id[i];
+        }
+
+        return i;
+    }
+
+    @Override
+    public int count() {
+        return count;
+    }
 }

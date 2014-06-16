@@ -1,12 +1,27 @@
 /**
- * Copyright Vast 2014. All Rights Reserved.
+ * Copyright (C) 2014 Luka Obradovic.
  *
- * http://www.vast.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.hoshi.uf;
 
 /**
- * @author Luka Obradovic (luka@vast.com)
+ * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public interface UF {
+    void union(int p, int q);
+    boolean connected(int p, int q);
+    int find(int p);
+    int count();
 }

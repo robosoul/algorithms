@@ -24,4 +24,22 @@ import org.slf4j.LoggerFactory;
  */
 public class UnionFindTest {
     public static final Logger log = LoggerFactory.getLogger(UnionFindTest.class);
+
+    public static final int MAX_NUM_OF_ELEMENTS = 10;
+
+    public static void main(String[] args) {
+        final UF uf = new QuickFindUF(MAX_NUM_OF_ELEMENTS);
+
+        uf.union(1, 2);
+        uf.union(3, 4);
+        uf.union(3, 4);
+        uf.union(5, 6);
+        uf.union(7, 8);
+        uf.union(7, 9);
+        uf.union(2, 8);
+        uf.union(0, 5);
+        uf.union(1, 9);
+
+        System.out.println(uf.count());
+    }
 }
