@@ -44,12 +44,12 @@ public class WeightedQuickUnionUF extends QuickUnionUF {
         int rootQ = find(q);
 
         if (rootP != rootQ) {
-            if (sz[rootP] < sz[rootQ]) {
-                id[rootP] = rootQ;
-                sz[rootQ] += sz[rootP];
-            } else {
+            if (sz[rootQ] < sz[rootP]) {
                 id[rootQ] = rootP;
                 sz[rootP] += sz[rootQ];
+            } else {
+                id[rootP] = rootQ;
+                sz[rootQ] += sz[rootP];
             }
 
             --count;

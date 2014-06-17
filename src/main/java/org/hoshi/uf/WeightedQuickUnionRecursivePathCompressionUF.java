@@ -22,20 +22,20 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class RecursiveFindQuickUnionUF extends QuickUnionUF {
-    public static final Logger log = LoggerFactory.getLogger(
-            RecursiveFindQuickUnionUF.class);
+public class WeightedQuickUnionRecursivePathCompressionUF extends WeightedQuickUnionPathCompressionUF {
+    public static final Logger log =
+            LoggerFactory.getLogger(WeightedQuickUnionRecursivePathCompressionUF.class);
 
-    public RecursiveFindQuickUnionUF(final int n) {
+    public WeightedQuickUnionRecursivePathCompressionUF(final int n) {
         super(n);
     }
 
     @Override
-    public int find(int i) {
+    public int find(final int i) {
         if (i != id[i]) {
-            i = find(id[i]);
+            id[i] = find(id[i]);
         }
 
-        return i;
+        return id[i];
     }
 }

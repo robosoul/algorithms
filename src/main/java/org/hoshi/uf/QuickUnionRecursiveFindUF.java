@@ -22,24 +22,20 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class UnionFindTest {
-    public static final Logger log = LoggerFactory.getLogger(UnionFindTest.class);
+public class QuickUnionRecursiveFindUF extends QuickUnionUF {
+    public static final Logger log =
+            LoggerFactory.getLogger(QuickUnionRecursiveFindUF.class);
 
-    public static final int MAX_NUM_OF_ELEMENTS = 6;
+    public QuickUnionRecursiveFindUF(final int n) {
+        super(n);
+    }
 
-    public static void main(String[] args) {
-        final UF uf = new WeightedQuickUnionRecursivePathCompressionUF(MAX_NUM_OF_ELEMENTS);
+    @Override
+    public int find(int i) {
+        if (i != id[i]) {
+            i = find(id[i]);
+        }
 
-        uf.union(1, 0);
-        uf.union(4, 1);
-        uf.union(2, 3);
-        uf.union(3, 5);
-//        uf.union(5, 6);
-//        uf.union(7, 8);
-//        uf.union(7, 9);
-//        uf.union(2, 8);
-        uf.union(0, 5);
-
-        System.out.println(uf.count());
+        return i;
     }
 }
