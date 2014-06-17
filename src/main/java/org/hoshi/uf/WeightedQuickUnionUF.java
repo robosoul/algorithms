@@ -29,7 +29,7 @@ public class WeightedQuickUnionUF extends QuickUnionUF {
     // represents size of each tree
     private final int[] sz;
 
-    protected WeightedQuickUnionUF(final int n) {
+    public WeightedQuickUnionUF(final int n) {
         super(n);
 
         sz = new int[n];

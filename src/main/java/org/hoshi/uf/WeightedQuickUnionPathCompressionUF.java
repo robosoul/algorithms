@@ -35,19 +35,20 @@ public class WeightedQuickUnionPathCompressionUF extends WeightedQuickUnionUF {
     }
 
     @Override
-    public int find(final int i) {
-        int f = i;
-        while (f != id[f]) {
-            f = id[f];
+    public int find(int i) {
+        int root = i;
+        while (root != id[root]) {
+            root = id[root];
         }
 
+        // make every element from i to root directly linked to the root
         int tmp;
-        while (i != f) {
+        while (i != root) {
             tmp = id[i];
-            id [i] = f;
-            f = tmp;
+            id[i] = root;
+            i = tmp;
         }
 
-        return f;
+        return root;
     }
 }

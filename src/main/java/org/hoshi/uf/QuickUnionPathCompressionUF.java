@@ -40,14 +40,14 @@ public class QuickUnionPathCompressionUF extends QuickUnionUF {
 
     @Override
     public int find(final int i) {
-        int f = i;
-        while (f != id[f]) {
-            f = id[f];
+        int root = i;
+        while (root != id[root]) {
+            root = id[root];
         }
 
         // make i-th element directly linked to the root.
-        id[i] = f;
+        id[i] = root;
 
-        return f;
+        return root;
     }
 }

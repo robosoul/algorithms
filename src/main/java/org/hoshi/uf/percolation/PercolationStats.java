@@ -1,25 +1,12 @@
-/**
- * Copyright (C) 2014 Luka Obradovic.
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package org.hoshi.uf.percolation;
+
+import java.util.Random;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class PercolationStats {
+    public static final Random RNDGEN = new Random();
     private final double mean;
     private final double stddev;
     private final double confidenceLo;
@@ -53,7 +40,7 @@ public class PercolationStats {
 
         // calculation standard deviation
         total = 0.0;
-        for (double x : xs ){
+        for (double x : xs) {
             total += (x - mean) * (x - mean);
         }
 
@@ -66,17 +53,16 @@ public class PercolationStats {
     private double run(final int N) {
         final Percolation percolation = new Percolation(N);
 
-        final int upperN = N + 1;
         final int numOfSites = N * N;
 
         int open = 0;
 
-        int row = 1;
-        int col = 1;
+        int row;
+        int col;
         while (!percolation.percolates()) {
             do {
-                //row = StdRandom.uniform(1, upperN);
-                //col = StdRandom.uniform(1, upperN);
+                row = RNDGEN.nextInt(N) + 1;
+                col = RNDGEN.nextInt(N) + 1;
             } while (percolation.isOpen(row, col));
 
             percolation.open(row, col);
@@ -98,7 +84,7 @@ public class PercolationStats {
      * Returns standard deviation of percolation threshold.
      * @return standard deviation of percolation threshold.
      */
-    public double stddev(){
+    public double stddev() {
         return stddev;
     }
 
@@ -118,14 +104,12 @@ public class PercolationStats {
         return confidenceHi;
     }
 
-    public static void main(String[] args){
-        final PercolationStats stats = new PercolationStats(2, 10000);
+    public static void main(String[] args) {
+        final PercolationStats stats = new PercolationStats(200, 100);
 
         System.out.println("mean                    = " + stats.mean());
         System.out.println("stddev                  = " + stats.stddev());
-        System.out.println(
-                "95% confidence interval = " + stats.confidenceLo() + ", " + stats
-                        .confidenceHi());
+        System.out.println("95% confidence interval = " + stats.confidenceLo() + ", " + stats.confidenceHi());
 
     }
 }
