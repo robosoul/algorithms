@@ -30,7 +30,7 @@ public class WeightedQuickUnionPathCompressionUF extends WeightedQuickUnionUF {
     public static final Logger log = LoggerFactory.getLogger(
             WeightedQuickUnionPathCompressionUF.class);
 
-    protected WeightedQuickUnionPathCompressionUF(final int n) {
+    public WeightedQuickUnionPathCompressionUF(final int n) {
         super(n);
     }
 
