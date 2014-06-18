@@ -19,12 +19,15 @@ public class Percolation {
 
     public Percolation(final int n) {
         if (n <= 0) {
-            throw new IllegalArgumentException("invalid dimensions: " + n);
+            throw new IllegalArgumentException("Invalid dimensions: " + n);
         }
 
         this.n = n;
 
+        // virtual top index
         top = 0;
+
+        // virtual bottom index
         bottom = n * n + 1;
 
         // two additional sites (virtual top and virtual bottom)
@@ -47,9 +50,7 @@ public class Percolation {
      * @param j column
      */
     public void open(final int i, final int j) {
-        if (!valid(i, j)) {
-            throw new IndexOutOfBoundsException("(" + i + ", " + j + ")");
-        }
+        validate(i, j);
 
         // get current site's index
         final int current = xzTo1D(i, j);
@@ -61,29 +62,29 @@ public class Percolation {
         // let's open it
         sites[current] = true;
 
-        // check if current site can be connected to the virtual top, otherwise
-        // check site above current one
+        // check if current site can be connected to the virtual top
         if (i == 1) {
             uf.union(top, current);
-        } else if (valid(i - 1, j) && isOpen(i - 1, j)) {
+        } else if (checkAbove(i, j)) {
+            // otherwise check site above current one
             uf.union(xzTo1D(i - 1, j), current);
         }
 
-        // check if current site can be connected to the virtual bottom, otherwise
-        // check site bellow current one
+        // check if current site can be connected to the virtual bottom
         if (i == n) {
             uf.union(bottom, current);
-        } else if (valid(i + 1, j) && isOpen(i + 1, j)) {
+        } else if (checkBelow(i, j)) {
+            // otherwise check site bellow current one
             uf.union(xzTo1D(i + 1, j), current);
         }
 
         // check site left of current one
-        if (valid(i, j - 1) && isOpen(i, j - 1)) {
+        if (checkLeft(i, j)) {
             uf.union(xzTo1D(i, j - 1), current);
         }
 
         // check site right of current one
-        if (valid(i, j + 1) && isOpen(i, j + 1)) {
+        if (checkRight(i, j)) {
             uf.union(xzTo1D(i, j + 1), current);
         }
     }
@@ -96,9 +97,7 @@ public class Percolation {
      * @return true if site (row i, column j) is open.
      */
     public boolean isOpen(final int i, final int j) {
-        if (!valid(i, j)) {
-            throw new IndexOutOfBoundsException("(" + i + ", " + j + ")");
-        }
+        validate(i, j);
 
         return sites[xzTo1D(i, j)];
     }
@@ -111,9 +110,7 @@ public class Percolation {
      * @return true if site (row i, column j) full.
      */
     public boolean isFull(final int i, final int j) {
-        if (!valid(i, j)) {
-            throw new IndexOutOfBoundsException("(" + i + ", " + j + ")");
-        }
+        validate(i, j);
 
         return uf.connected(top, xzTo1D(i, j));
     }
@@ -147,5 +144,62 @@ public class Percolation {
      */
     private boolean valid(final int i, final int j) {
         return (i >= 1 && i <= n) && (j >= 1 && j <= n);
+    }
+
+    /**
+     * Calls {@code valid(i, j)} and throws {@code IndexOutOfBoundsException} if
+     * coordinates are invalid.
+     *
+     * @param i row
+     * @param j column
+     */
+    private void validate(final int i, final int j) {
+        if (!valid(i, j)) {
+            throw new IndexOutOfBoundsException("Invalid coordinates (" + i + ", " + j + ")");
+        }
+    }
+
+    /**
+     * Returns true if site directly above current site is valid and open.
+     *
+     * @param i row
+     * @param j col
+     * @return true if site directly above current site is valid and open.
+     */
+    private boolean checkAbove(final int i, final int j) {
+        return valid(i - 1, j) && isOpen(i - 1, j);
+    }
+
+    /**
+     * Returns true if site directly below current site is valid and open.
+     *
+     * @param i row
+     * @param j col
+     * @return true if site directly below current site is valid and open.
+     */
+    private boolean checkBelow(final int i, final int j) {
+        return valid(i + 1, j) && isOpen(i + 1, j);
+    }
+
+    /**
+     * Returns true if site left of current site is valid and open.
+     *
+     * @param i row
+     * @param j col
+     * @return true if site left of current site is valid and open.
+     */
+    private boolean checkLeft(final int i, final int j) {
+        return valid(i, j - 1) && isOpen(i, j - 1);
+    }
+
+    /**
+     * Returns true if site right of current site is valid and open.
+     *
+     * @param i row
+     * @param j col
+     * @return true if site right of current site is valid and open.
+     */
+    private boolean checkRight(final int i, final int j) {
+        return valid(i, j + 1) && isOpen(i, j + 1);
     }
 }
