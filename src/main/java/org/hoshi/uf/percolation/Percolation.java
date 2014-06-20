@@ -1,9 +1,7 @@
 package org.hoshi.uf.percolation;
 
-import org.hoshi.uf.QuickUnionPathCompressionUF;
 import org.hoshi.uf.UF;
 import org.hoshi.uf.WeightedQuickUnionPathCompressionUF;
-import org.hoshi.uf.WeightedQuickUnionUF;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
@@ -53,7 +51,7 @@ public class Percolation {
         validate(i, j);
 
         // get current site's index
-        final int current = xzTo1D(i, j);
+        final int current = xyTo1D(i, j);
 
         if (sites[current]) {
             return; // already open, don't do anything
@@ -67,7 +65,7 @@ public class Percolation {
             uf.union(top, current);
         } else if (checkAbove(i, j)) {
             // otherwise check site above current one
-            uf.union(xzTo1D(i - 1, j), current);
+            uf.union(xyTo1D(i - 1, j), current);
         }
 
         // check if current site can be connected to the virtual bottom
@@ -75,17 +73,17 @@ public class Percolation {
             uf.union(bottom, current);
         } else if (checkBelow(i, j)) {
             // otherwise check site bellow current one
-            uf.union(xzTo1D(i + 1, j), current);
+            uf.union(xyTo1D(i + 1, j), current);
         }
 
         // check site left of current one
         if (checkLeft(i, j)) {
-            uf.union(xzTo1D(i, j - 1), current);
+            uf.union(xyTo1D(i, j - 1), current);
         }
 
         // check site right of current one
         if (checkRight(i, j)) {
-            uf.union(xzTo1D(i, j + 1), current);
+            uf.union(xyTo1D(i, j + 1), current);
         }
     }
 
@@ -99,7 +97,7 @@ public class Percolation {
     public boolean isOpen(final int i, final int j) {
         validate(i, j);
 
-        return sites[xzTo1D(i, j)];
+        return sites[xyTo1D(i, j)];
     }
 
     /**
@@ -112,7 +110,7 @@ public class Percolation {
     public boolean isFull(final int i, final int j) {
         validate(i, j);
 
-        return uf.connected(top, xzTo1D(i, j));
+        return uf.connected(top, xyTo1D(i, j));
     }
 
     /**
@@ -131,7 +129,7 @@ public class Percolation {
      * @param j column
      * @return transformed 2D coordinates to 1D.
      */
-    private int xzTo1D(final int i, final int j) {
+    private int xyTo1D(final int i, final int j) {
         return (i - 1) * n + j;
     }
 
