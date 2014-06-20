@@ -59,11 +59,6 @@ public class QuickFindUF extends AbstractUF {
     }
 
     @Override
-    public boolean connected(final int p, final int q) {
-        return id[p] == id[q];
-    }
-
-    @Override
     public int find(final int p) {
         return id[p];
     }

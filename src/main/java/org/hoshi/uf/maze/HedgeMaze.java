@@ -203,11 +203,11 @@ public class HedgeMaze extends AbstractMaze {
                 current = xyTo1D(i, j);
 
                 if (current == start) {
-                    System.out.print('S');
+                    System.out.print('☺');
                 } else if (current == goal) {
-                    System.out.print('G');
+                    System.out.print('✖');
                 } else {
-                    System.out.print((cells[current]) ? ' ' : 'X');
+                    System.out.print((cells[current]) ? ' ' : '█');
                 }
             }
 

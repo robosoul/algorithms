@@ -41,11 +41,6 @@ public class QuickUnionUF extends AbstractUF {
     }
 
     @Override
-    public boolean connected(final int p, final int q) {
-        return find(p) == find(q);
-    }
-
-    @Override
     public int find(int i) {
         while (i != id[i]) {
             i = id[i];

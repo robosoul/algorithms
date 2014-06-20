@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractUF implements UF {
     public static final Logger log = LoggerFactory.getLogger(AbstractUF.class);
 
-    // represents the number of connected components {0,5,6} {1,2,7,8,9} {4,4}
+    // represents the number of sets {0,5,6} {1,2,7,8,9} {4,4}
     protected int count;
 
     // represents the actual connections between objects
@@ -38,5 +38,10 @@ public abstract class AbstractUF implements UF {
         for (int i = 0; i < id.length; ++i) {
             id[i] = i;
         }
+    }
+
+    @Override
+    public boolean connected(final int p, final int q) {
+        return find(p) == find(q);
     }
 }

@@ -26,7 +26,10 @@ public class MazeTest {
     public static final Logger log = LoggerFactory.getLogger(MazeTest.class);
 
     public static void main(String[] args) {
-        final Maze maze = new HedgeMaze(10, 21);
+        final int n = HedgeMaze.RND_GEN.nextInt(15) + 3;
+        final int m = HedgeMaze.RND_GEN.nextInt(60) + 3;
+
+        final Maze maze = new HedgeMaze(30, 30);
         maze.print();
     }
 }
