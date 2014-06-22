@@ -29,7 +29,7 @@ public class MazeTest {
         final int n = HedgeMaze.RND_GEN.nextInt(15) + 3;
         final int m = HedgeMaze.RND_GEN.nextInt(60) + 3;
 
-        final Maze maze = new HedgeMaze(30, 30);
+        final Maze maze = new HedgeMaze(18, 80);
         maze.print();
     }
 }

@@ -19,27 +19,102 @@ package org.hoshi.uf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
+
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class UnionFindTest {
     public static final Logger log = LoggerFactory.getLogger(UnionFindTest.class);
 
-    public static final int MAX_NUM_OF_ELEMENTS = 6;
+    public static final Random RNDGEN = new Random();
 
-    public static void main(String[] args) {
-        final UF uf = new WeightedQuickUnionRecursivePathCompressionUF(MAX_NUM_OF_ELEMENTS);
+    private final UF uf;
+    private long time;
+    private int n;
 
-        uf.union(1, 0);
-        uf.union(4, 1);
-        uf.union(2, 3);
-        uf.union(3, 5);
-//        uf.union(5, 6);
-//        uf.union(7, 8);
-//        uf.union(7, 9);
-//        uf.union(2, 8);
-        uf.union(0, 5);
+    public UnionFindTest(final int type, final int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n < 0");
+        }
 
-        System.out.println(uf.count());
+        this.n = n;
+
+        if (type == 0) {
+            uf = new QuickFindUF(n);
+        } else if (type == 1) {
+            uf = new QuickUnionUF(n);
+        } else if (type == 2) {
+            uf = new QuickUnionRecursiveFindUF(n);
+        } else if (type == 3) {
+            uf = new QuickUnionPathCompressionUF(n);
+        } else if (type == 4) {
+            uf = new WeightedQuickUnionUF(n);
+        } else if (type == 5) {
+            uf = new WeightedQuickUnionPathCompressionUF(n);
+        } else if (type == 6) {
+            uf = new WeightedQuickUnionRecursivePathCompressionUF(n);
+        } else if (type == 7) {
+            uf = new RankedQuickUnionUF(n);
+        } else if (type == 8) {
+            uf = new RankedQuickUnionWithPathCompressionUF(n);
+        } else {
+            uf = null;
+            throw new IllegalArgumentException("unknown type: " + type);
+        }
+    }
+
+    public void run() {
+        final long start = System.currentTimeMillis();
+
+        int i;
+        int j;
+        while (uf.count() > 1) {
+            i = RNDGEN.nextInt(n);
+            j = RNDGEN.nextInt(n);
+
+            if (!uf.connected(i, j)) {
+                uf.union(i, j);
+            }
+
+            //System.out.println(i + " " + j);
+        }
+
+        final long end = System.currentTimeMillis();
+
+        time = end - start;
+    }
+
+    public String name() {
+        return uf.getClass().getSimpleName();
+    }
+
+    private long time() {
+        return time;
+    }
+
+    public static void main(final String[] args) {
+        final int n = 1000000;
+
+        // START: warm-up
+        for (int i = 0; i < n; ++i) {
+            // let's warm-up jvm
+        }
+
+        UnionFindTest test;
+        for (int i = 4; i < 9; ++i) {
+            test = new UnionFindTest(i, n);
+            test.run();
+        }
+        // END: warm-up
+
+
+        for (int i = 4; i < 9; ++i) {
+            test = new UnionFindTest(i, n);
+            test.run();
+
+            String name = String.format("%-50s", test.name()).replace(' ', '.').replaceFirst(test.name() + ".", test.name() + " ");
+            System.out.printf("%s %dms (%d)%n", name, test.time(), n);
+        }
     }
 }

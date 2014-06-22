@@ -16,6 +16,7 @@
  */
 package org.hoshi.uf.maze;
 
+import org.hoshi.uf.RankedQuickUnionWithPathCompressionUF;
 import org.hoshi.uf.UF;
 import org.hoshi.uf.WeightedQuickUnionPathCompressionUF;
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public abstract class AbstractMaze implements Maze {
         this.n = n;
         this.m = m;
 
-        uf = new WeightedQuickUnionPathCompressionUF(n * m);
+        uf = new RankedQuickUnionWithPathCompressionUF(n * m);
 
         init();
         generate();

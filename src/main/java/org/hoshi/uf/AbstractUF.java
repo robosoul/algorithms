@@ -19,6 +19,8 @@ package org.hoshi.uf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
@@ -40,8 +42,22 @@ public abstract class AbstractUF implements UF {
         }
     }
 
+    protected AbstractUF(final int n, final int fillWith) {
+        this.count = n;
+        this.id = new int[n];
+
+        for (int i = 0; i < id.length; ++i) {
+            id[i] = fillWith;
+        }
+    }
+
     @Override
     public boolean connected(final int p, final int q) {
         return find(p) == find(q);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(id);
     }
 }

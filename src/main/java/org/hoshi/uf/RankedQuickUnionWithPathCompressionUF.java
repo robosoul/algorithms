@@ -22,39 +22,29 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public class QuickUnionUF extends AbstractUF {
-    public static final Logger log = LoggerFactory.getLogger(QuickUnionUF.class);
+public class RankedQuickUnionWithPathCompressionUF extends RankedQuickUnionUF {
+    public static final Logger log = LoggerFactory.getLogger(
+            RankedQuickUnionWithPathCompressionUF.class);
 
-    public QuickUnionUF(final int n) {
+    public RankedQuickUnionWithPathCompressionUF(final int n) {
         super(n);
-    }
-
-    protected QuickUnionUF(final int n, final int fillWith) {
-        super(n, fillWith);
-    }
-
-    @Override
-    public void union(final int p, final int q) {
-        int rootP = find(p);
-        int rootQ = find(q);
-
-        if (rootP != rootQ) {
-            id[rootP] = rootQ;
-            --count;
-        }
     }
 
     @Override
     public int find(int i) {
-        while (i != id[i]) {
-            i = id[i];
+        int root = i;
+
+        while (id[root] > 0) {
+            root = id[root];
         }
 
-        return i;
-    }
+        int tmp;
+        while (id[i] > 0) {
+            tmp = id[i];
+            id[i] = root;
+            i = tmp;
+        }
 
-    @Override
-    public int count() {
-        return count;
+        return root;
     }
 }
