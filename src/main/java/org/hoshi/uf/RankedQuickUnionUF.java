@@ -20,6 +20,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * "My" version of ranked disjoint set.
+ *
+ *      0   1   2   3   4   5
+ * id [-1, -1, -1, -1, -1, -1]
+ *
+ * union(2, 1)
+ * id [-1, -2,  1, -1, -1, -1]
+ *
+ * union(3, 0)
+ * id [-2, -2,  1,  0, -1, -1]
+ *
+ * union(1, 0)
+ * id [-4,  0,  1,  0, -1, -1]
+ *
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class RankedQuickUnionUF extends QuickUnionUF {
@@ -29,12 +43,7 @@ public class RankedQuickUnionUF extends QuickUnionUF {
         super(n, -1);
     }
 
-    //      0   1   2   3   4   5
-    // id [-4,  0,  1,  0, -1, -1]
-    //
-    // union(2, 1)
-    // union(3, 0)
-    // union(1, 0);
+
 
     @Override
     public int find(int i) {
