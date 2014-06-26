@@ -26,8 +26,8 @@ import java.util.NoSuchElementException;
  */
 public class FixedCapacityArrayStack<E> implements Stack<E> {
     // current number of data on stack
-    private int n;
-    private E[] array;
+    protected int n;
+    protected final E[] array;
 
     @SuppressWarnings("unchecked")
     public FixedCapacityArrayStack(final int capacity) {
@@ -63,9 +63,11 @@ public class FixedCapacityArrayStack<E> implements Stack<E> {
 
     @Override
     public void push(final E e) {
-        if (n < array.length) {
-            array[n++] = e;
+        if (array.length == n) {
+            throw new UnsupportedOperationException("Stack is full");
         }
+
+        array[n++] = e;
     }
 
     @Override
