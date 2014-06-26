@@ -16,16 +16,12 @@
  */
 package org.hoshi.collections.stacks;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class StacksTest {
-    public static final Logger log = LoggerFactory.getLogger(StacksTest.class);
-
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final Stack<String> stackOfStrings = new ArrayStack<String>();
 
         stackOfStrings.push("...");

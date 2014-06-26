@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf.social;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Represent a person in social network (a friend).
@@ -25,8 +23,6 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class Friend {
-    public static final Logger log = LoggerFactory.getLogger(Friend.class);
-
     private final String firstName;
     private final String lastName;
 

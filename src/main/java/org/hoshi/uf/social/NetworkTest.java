@@ -16,16 +16,12 @@
  */
 package org.hoshi.uf.social;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class NetworkTest {
-    public static final Logger log = LoggerFactory.getLogger(NetworkTest.class);
-
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final Network network = new Network(10);
 
         final Friend f1 = new Friend("Luka", "Obradovic");

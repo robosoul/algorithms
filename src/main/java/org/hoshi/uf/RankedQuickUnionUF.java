@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * "My" version of ranked disjoint set.
@@ -37,13 +35,9 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class RankedQuickUnionUF extends QuickUnionUF {
-    public static final Logger log = LoggerFactory.getLogger(RankedQuickUnionUF.class);
-
     public RankedQuickUnionUF(final int n) {
         super(n, -1);
     }
-
-
 
     @Override
     public int find(int i) {

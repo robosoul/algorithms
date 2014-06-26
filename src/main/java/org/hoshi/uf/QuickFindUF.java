@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *  The <tt>QuickFindUF</tt> class represents a union-find data structure.
@@ -36,8 +34,6 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class QuickFindUF extends AbstractUF {
-    public static final Logger log = LoggerFactory.getLogger(QuickFindUF.class);
-
     public QuickFindUF(final int n) {
         super(n);
     }

@@ -18,8 +18,6 @@ package org.hoshi.uf.social;
 
 import org.hoshi.uf.UF;
 import org.hoshi.uf.WeightedQuickUnionPathCompressionUF;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -31,9 +29,7 @@ import java.util.Map;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class Network {
-    public static final Logger log = LoggerFactory.getLogger(Network.class);
-
-    private int n = 0;
+    private int n;
     private final UF uf;
     private final Map<Friend, Integer> friends;
 

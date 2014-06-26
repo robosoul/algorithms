@@ -16,16 +16,9 @@
  */
 package org.hoshi.collections;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class CollectionsTest {
-    public static final Logger log = LoggerFactory.getLogger(CollectionsTest.class);
-
-    public static void main(String[] args) {
-
-    }
 }

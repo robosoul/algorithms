@@ -18,8 +18,6 @@ package org.hoshi.uf.maze;
 
 import org.hoshi.uf.UF;
 import org.hoshi.uf.WeightedQuickUnionPathCompressionUF;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
@@ -27,9 +25,6 @@ import java.util.Random;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class MyMaze {
-    public static final Logger log = LoggerFactory.getLogger(MyMaze.class);
-
-    public static final Random RND_GEN = new Random();
 
     public static final byte NORTH = 1; // (00000001) cell with north wall only
     public static final byte EAST  = 2; // (00000010) cell with east  wall only

@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * "My" version of ranked disjoint set (with path compression).
@@ -37,9 +35,6 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class RankedQuickUnionWithPathCompressionUF extends RankedQuickUnionUF {
-    public static final Logger log = LoggerFactory.getLogger(
-            RankedQuickUnionWithPathCompressionUF.class);
-
     public RankedQuickUnionWithPathCompressionUF(final int n) {
         super(n);
     }

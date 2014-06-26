@@ -19,16 +19,11 @@ package org.hoshi.uf.maze;
 import org.hoshi.uf.RankedQuickUnionWithPathCompressionUF;
 import org.hoshi.uf.UF;
 import org.hoshi.uf.WeightedQuickUnionPathCompressionUF;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public abstract class AbstractMaze implements Maze {
-    public static final Logger log =
-            LoggerFactory.getLogger(AbstractMaze.class);
-
     protected final int n;
     protected final int m;
 

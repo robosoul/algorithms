@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf.maze;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
@@ -25,9 +23,7 @@ import java.util.Random;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class HedgeMaze extends AbstractMaze {
-    public static final Logger log = LoggerFactory.getLogger(HedgeMaze.class);
-
-    public static final Random RND_GEN = new Random();
+    public static final Random RNDGEN = new Random();
 
     private int start;
     private int goal;
@@ -55,12 +51,11 @@ public class HedgeMaze extends AbstractMaze {
             int row;
             int col;
             do {
-                row = RND_GEN.nextInt(n - 1) + 1;
-                col = RND_GEN.nextInt(m - 1) + 1;
+                row = RNDGEN.nextInt(n - 1) + 1;
+                col = RNDGEN.nextInt(m - 1) + 1;
             } while (!canOpen(row, col));
 
             open(row, col);
-            //print();
         }
     }
 
@@ -203,11 +198,11 @@ public class HedgeMaze extends AbstractMaze {
                 current = xyTo1D(i, j);
 
                 if (current == start) {
-                    System.out.print('☺');
+                    System.out.print('s');
                 } else if (current == goal) {
-                    System.out.print('✖');
+                    System.out.print('g');
                 } else {
-                    System.out.print((cells[current]) ? ' ' : '█');
+                    System.out.print((cells[current]) ? ' ' : '#');
                 }
             }
 

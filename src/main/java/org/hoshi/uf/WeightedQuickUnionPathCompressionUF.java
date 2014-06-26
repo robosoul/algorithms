@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Modify WeightedQuickUnionUF.java Note: The amortized cost per operation for
@@ -27,9 +25,6 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class WeightedQuickUnionPathCompressionUF extends WeightedQuickUnionUF {
-    public static final Logger log = LoggerFactory.getLogger(
-            WeightedQuickUnionPathCompressionUF.class);
-
     public WeightedQuickUnionPathCompressionUF(final int n) {
         super(n);
     }

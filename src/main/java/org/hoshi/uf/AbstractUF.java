@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -25,9 +23,6 @@ import java.util.Arrays;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public abstract class AbstractUF implements UF {
-    public static final Logger log = LoggerFactory.getLogger(AbstractUF.class);
-
-    // represents the number of sets {0,5,6} {1,2,7,8,9} {4,4}
     protected int count;
 
     // represents the actual connections between objects

@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Quick-union with path compression. Modify QuickUnionUF.java to include path
@@ -31,9 +29,6 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class QuickUnionPathCompressionUF extends QuickUnionUF {
-    public static final Logger log = LoggerFactory.getLogger(
-            QuickUnionPathCompressionUF.class);
-
     public QuickUnionPathCompressionUF(final int n) {
         super(n);
     }

@@ -16,16 +16,11 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class QuickUnionRecursiveFindUF extends QuickUnionUF {
-    public static final Logger log =
-            LoggerFactory.getLogger(QuickUnionRecursiveFindUF.class);
-
     public QuickUnionRecursiveFindUF(final int n) {
         super(n);
     }

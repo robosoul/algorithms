@@ -17,20 +17,19 @@
 package org.hoshi.collections.stacks.application;
 
 import org.hoshi.collections.stacks.ArrayStack;
+import org.hoshi.collections.stacks.BoundedStack;
 import org.hoshi.collections.stacks.Stack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * Done with 2 Stacks. Maybe do it with BoundedQueue ?
+ *
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class Tail {
-    public static final Logger log = LoggerFactory.getLogger(Tail.class);
-
     public static void main(String[] args) {
         if (args.length == 0) {
             System.err.println("Missing argument: n.");
@@ -51,8 +50,13 @@ public class Tail {
                 lines.push(line);
             }
 
+            final Stack<String> reverse = new ArrayStack<String>();
             for (int i = 0; i < n; ++i) {
-                System.out.println(lines.pop());
+                reverse.push(lines.pop());
+            }
+
+            for (String s : reverse) {
+                System.out.println(s);
             }
         } catch (IOException ioex) {
             System.err.println("Failed reading input: " + ioex.toString());

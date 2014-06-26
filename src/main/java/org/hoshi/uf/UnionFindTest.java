@@ -16,8 +16,6 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
@@ -25,8 +23,6 @@ import java.util.Random;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class UnionFindTest {
-    public static final Logger log = LoggerFactory.getLogger(UnionFindTest.class);
-
     public static final Random RNDGEN = new Random();
 
     private final UF uf;

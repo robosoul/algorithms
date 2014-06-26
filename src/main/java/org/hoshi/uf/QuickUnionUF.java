@@ -16,15 +16,11 @@
  */
 package org.hoshi.uf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class QuickUnionUF extends AbstractUF {
-    public static final Logger log = LoggerFactory.getLogger(QuickUnionUF.class);
-
     public QuickUnionUF(final int n) {
         super(n);
     }

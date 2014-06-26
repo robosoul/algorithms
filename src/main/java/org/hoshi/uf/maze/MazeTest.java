@@ -16,20 +16,20 @@
  */
 package org.hoshi.uf.maze;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.Random;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class MazeTest {
-    public static final Logger log = LoggerFactory.getLogger(MazeTest.class);
+    public static final Random RNDGEN = new Random();
 
-    public static void main(String[] args) {
-        final int n = HedgeMaze.RND_GEN.nextInt(15) + 3;
-        final int m = HedgeMaze.RND_GEN.nextInt(60) + 3;
+    public static void main(final String[] args) {
+        final int n = RNDGEN.nextInt(15) + 3;
+        final int m = RNDGEN.nextInt(60) + 3;
 
-        final Maze maze = new HedgeMaze(18, 80);
+        final Maze maze = new HedgeMaze(n, m);
         maze.print();
     }
 }

@@ -16,8 +16,6 @@
  */
 package org.hoshi.collections;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *  The <tt>Bag</tt> class represents a bag (or multiset) of
@@ -34,5 +32,5 @@ import org.slf4j.LoggerFactory;
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class Bag {
-    public static final Logger log = LoggerFactory.getLogger(Bag.class);
+
 }
